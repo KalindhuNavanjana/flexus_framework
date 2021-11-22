@@ -271,4 +271,10 @@ class Util extends GetxController {
 
     return String.fromCharCodes(charCodes);
   }
+
+  bool isDarkMode(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+    // return brightness == Brightness.dark;
+    return true;
+  }
 }

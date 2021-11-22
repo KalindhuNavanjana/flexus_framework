@@ -33,17 +33,29 @@ class TextInput extends StatelessWidget {
         name: name!,
         initialValue: initialValue,
         enabled: enabled,
+        cursorColor: Util.to.isDarkMode(Get.context!)
+            ? Colors.white
+            : Colors.black,
+        style: TextStyle(
+          color : Util.to.isDarkMode(Get.context!)
+              ? enabled ? Colors.white : Theme.of(context).disabledColor
+              : enabled ? Colors.black : Theme.of(context).disabledColor,),
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(
-              color:
-                  enabled ? Colors.black54 : Theme.of(context).disabledColor),
-          contentPadding: const EdgeInsets.all(16),
-          focusedBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.primary),
+              color: Util.to.isDarkMode(Get.context!)
+                ? enabled ? Colors.white54 : Theme.of(context).disabledColor
+                : enabled ? Colors.black54 : Theme.of(context).disabledColor,
           ),
-          border: const OutlineInputBorder(borderSide: BorderSide()),
+          filled: true,
+          fillColor: Util.to.isDarkMode(Get.context!)
+            ? Colors.white12:Colors.white,
+          contentPadding: const EdgeInsets.all(16),
+          focusedBorder: const OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Colors.white),
+          ),
+          border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
         ),
         validator: validator,
         obscureText: obscureText!,

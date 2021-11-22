@@ -35,28 +35,48 @@ class TextDropdown extends StatelessWidget {
         name: name!,
         initialValue: initialValue,
         decoration: InputDecoration(
-            labelStyle: TextStyle(
-              color: enabled
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).disabledColor,
-            ),
-            labelText: label,
-            contentPadding: const EdgeInsets.all(16),
-            border: const OutlineInputBorder(borderSide: BorderSide()),
-            prefixIcon: Icon(icon,
-                color: enabled
+          labelStyle: TextStyle(
+            color: Util.to.isDarkMode(Get.context!)
+                ? enabled
+                    ? Colors.white54
+                    : Theme.of(context).disabledColor
+                : enabled
                     ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).disabledColor)),
+                    : Theme.of(context).disabledColor,
+          ),
+          labelText: label,
+          contentPadding: const EdgeInsets.all(16),
+          border: const OutlineInputBorder(borderSide: BorderSide()),
+          prefixIcon: Icon(icon,
+              color: Util.to.isDarkMode(Get.context!)
+                  ? enabled
+                      ? Colors.white54
+                      : Theme.of(context).disabledColor
+                  : enabled
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).disabledColor),
+          filled: true,
+          fillColor: Util.to.isDarkMode(Get.context!) ? Colors.white12 : Colors.white,
+        ),
         allowClear: allowClear,
-        hint: Text(hint!),
+        hint: Text(
+          hint!,
+          style: TextStyle(
+            color: Util.to.isDarkMode(Get.context!)
+                ? enabled
+                    ? Colors.white54
+                    : Theme.of(context).disabledColor
+                : enabled
+                    ? Colors.black54
+                    : Theme.of(context).disabledColor,
+          ),
+        ),
         validator: validator,
         enabled: enabled,
         items: items!
             .map((val) => DropdownMenuItem(
                   value: val,
-                  child: Text(Trns.values
-                      .firstWhereOrNull((f) => f.toString() == "Trns.$val")
-                      .val),
+                  child: Text(Trns.values.firstWhereOrNull((f) => f.toString() == "Trns.$val").val),
                 ))
             .toList(),
       ),
